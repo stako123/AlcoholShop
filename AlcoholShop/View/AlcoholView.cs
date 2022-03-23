@@ -1,4 +1,5 @@
 ﻿using AlcoholShop.Controller;
+using AlcoholShop.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,9 +22,22 @@ namespace AlcoholShop.View
 
         private void AlcoholView_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'alcoholDBDataSet.Alcohol' table. You can move, or remove it, as needed.
             this.alcoholTableAdapter.Fill(this.alcoholDBDataSet.Alcohol);
             dgvAlcohol.DataSource = alcoholController.GetAll();
+        }
+
+        private void RefreshTable()
+        {
+            dgvAlcohol.DataSource = alcoholController.GetAll();
+        }
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            Alcohol alcohol = new Alcohol();
+            alcohol.Name = txtCreate.Text;
+            alcohol.Alcohol_Percent = double.Parse(txtPercent.Text);
+            alcohol.Price = int.Parse(txtPrice.Text);
+            alcoholController.CreateAlcohol(alcohol);
+            RefreshTable();
         }
     }
 }

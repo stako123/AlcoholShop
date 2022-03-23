@@ -18,5 +18,15 @@ namespace AlcoholShop.Controller
                 return alcohols;
             }
         }
+
+        public void CreateAlcohol(Alcohol a)
+        {
+            using (AlcoholDBEntities adbe = new AlcoholDBEntities())
+            {
+                a.Id = adbe.Alcohols.ToList().LastOrDefault().Id + 1;
+                adbe.Alcohols.Add(a);
+                adbe.SaveChanges();
+            }
+        }
     }
 }
