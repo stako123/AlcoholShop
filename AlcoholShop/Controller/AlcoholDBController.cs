@@ -23,9 +23,29 @@ namespace AlcoholShop.Controller
         {
             using (AlcoholDBEntities adbe = new AlcoholDBEntities())
             {
-                a.Id = adbe.Alcohols.ToList().LastOrDefault().Id + 1;
+                if (adbe.Alcohols.ToList().LastOrDefault() == null)
+                {
+                    a.Id = 1;
+                }
+                else
+                {
+                    a.Id = adbe.Alcohols.ToList().LastOrDefault().Id + 1;
+                }
                 adbe.Alcohols.Add(a);
                 adbe.SaveChanges();
+            }
+        }
+
+        public void DeleteAlcohol(int id)
+        {
+            using (AlcoholDBEntities adbe = new AlcoholDBEntities())
+            {
+                var alcoholToDelete = adbe.Alcohols.Where(a => a.Id == id).FirstOrDefault();
+                if (alcoholToDelete != null)
+                {
+                    adbe.Alcohols.Remove(alcoholToDelete);
+                    adbe.SaveChanges();
+                }
             }
         }
     }

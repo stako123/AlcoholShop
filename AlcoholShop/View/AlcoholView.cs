@@ -15,6 +15,7 @@ namespace AlcoholShop.View
     public partial class AlcoholView : Form
     {
         AlcoholDBController alcoholController = new AlcoholDBController();
+
         public AlcoholView()
         {
             InitializeComponent();
@@ -22,7 +23,6 @@ namespace AlcoholShop.View
 
         private void AlcoholView_Load(object sender, EventArgs e)
         {
-            this.alcoholTableAdapter.Fill(this.alcoholDBDataSet.Alcohol);
             dgvAlcohol.DataSource = alcoholController.GetAll();
         }
 
@@ -37,6 +37,14 @@ namespace AlcoholShop.View
             alcohol.Alcohol_Percent = double.Parse(txtPercent.Text);
             alcohol.Price = int.Parse(txtPrice.Text);
             alcoholController.CreateAlcohol(alcohol);
+            RefreshTable();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvAlcohol.CurrentRow;
+            int a = int.Parse(row.Cells[0].Value.ToString());
+            alcoholController.DeleteAlcohol(a);
             RefreshTable();
         }
     }
