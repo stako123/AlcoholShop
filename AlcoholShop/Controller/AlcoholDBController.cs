@@ -48,5 +48,20 @@ namespace AlcoholShop.Controller
                 }
             }
         }
+        
+        public void UpdateAlcohol(int id, Alcohol alcohol)
+        {
+            using (AlcoholDBEntities adbe = new AlcoholDBEntities())
+            {
+                var alcoholToUpdate = adbe.Alcohols.Where(g => g.Id == id).FirstOrDefault();
+                if (alcoholToUpdate !=null)
+                {
+                    alcoholToUpdate.Id = id;
+                    alcoholToUpdate.Name = alcohol.Name;
+                    alcoholToUpdate.Price = alcohol.Price;
+                    adbe.SaveChanges();
+                }
+            }
+        }
     }
 }
