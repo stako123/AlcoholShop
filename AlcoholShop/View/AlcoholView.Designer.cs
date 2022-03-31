@@ -31,6 +31,11 @@ namespace AlcoholShop.View
         {
             this.components = new System.ComponentModel.Container();
             this.dgvAlcohol = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alcoholPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alcoholBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblName = new System.Windows.Forms.Label();
             this.txtCreate = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
@@ -39,11 +44,7 @@ namespace AlcoholShop.View
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtPercent = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.alcoholBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alcoholPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlcohol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alcoholBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +63,35 @@ namespace AlcoholShop.View
             this.dgvAlcohol.Name = "dgvAlcohol";
             this.dgvAlcohol.Size = new System.Drawing.Size(344, 167);
             this.dgvAlcohol.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // alcoholPercentDataGridViewTextBoxColumn
+            // 
+            this.alcoholPercentDataGridViewTextBoxColumn.DataPropertyName = "Alcohol_Percent";
+            this.alcoholPercentDataGridViewTextBoxColumn.HeaderText = "Alcohol_Percent";
+            this.alcoholPercentDataGridViewTextBoxColumn.Name = "alcoholPercentDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Price";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Price";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // alcoholBindingSource
+            // 
+            this.alcoholBindingSource.DataSource = typeof(AlcoholShop.Model.Alcohol);
             // 
             // lblName
             // 
@@ -137,34 +167,15 @@ namespace AlcoholShop.View
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // alcoholBindingSource
+            // btnUpdate
             // 
-            this.alcoholBindingSource.DataSource = typeof(AlcoholShop.Model.Alcohol);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // alcoholPercentDataGridViewTextBoxColumn
-            // 
-            this.alcoholPercentDataGridViewTextBoxColumn.DataPropertyName = "Alcohol_Percent";
-            this.alcoholPercentDataGridViewTextBoxColumn.HeaderText = "Alcohol_Percent";
-            this.alcoholPercentDataGridViewTextBoxColumn.Name = "alcoholPercentDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Price";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Price";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.btnUpdate.Location = new System.Drawing.Point(508, 237);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(123, 170);
+            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // AlcoholView
             // 
@@ -173,6 +184,7 @@ namespace AlcoholShop.View
             this.BackgroundImage = global::AlcoholShop.Properties.Resources.свали;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.txtPercent);
             this.Controls.Add(this.txtPrice);
@@ -195,8 +207,6 @@ namespace AlcoholShop.View
         #endregion
 
         private System.Windows.Forms.DataGridView dgvAlcohol;
-        private AlcoholDBDataSet alcoholDBDataSet;
-        private AlcoholDBDataSetTableAdapters.AlcoholTableAdapter alcoholTableAdapter;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtCreate;
         private System.Windows.Forms.Button btnCreate;
@@ -204,14 +214,12 @@ namespace AlcoholShop.View
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtPercent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn alcoholPercentDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.BindingSource alcoholBindingSource;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

@@ -47,5 +47,16 @@ namespace AlcoholShop.View
             alcoholController.DeleteAlcohol(a);
             RefreshTable();
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dgvAlcohol.CurrentRow;
+            int id = int.Parse(row.Cells[0].Value.ToString());
+            Alcohol alcohol = new Alcohol();
+            alcohol.Name = txtCreate.Text;
+            alcohol.Price = int.Parse(txtPrice.Text);
+            alcoholController.UpdateAlcohol(id, alcohol);
+            RefreshTable();
+        }
     }
 }
